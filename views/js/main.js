@@ -285,20 +285,23 @@ function getNoun(y) {
 var adjectives = ["dark", "color", "whimsical", "shiny", "noisy", "apocalyptic", "insulting", "praise", "scientific"];  // types of adjectives for pizza titles
 var nouns = ["animals", "everyday", "fantasy", "gross", "horror", "jewelry", "places", "scifi"];                        // types of nouns for pizza titles
 
+ var ADJECTIVES_LENGTH = adjectives.length;
+ var NOUNS_LENGTH = nouns.length;
+
 // Generates random numbers for getAdj and getNoun functions and returns a new pizza name
 function generator(adj, noun) {
   var adjectives = getAdj(adj);
   var nouns = getNoun(noun);
-  var randomAdjective = parseInt(Math.random() * adjectives.length);
-  var randomNoun = parseInt(Math.random() * nouns.length);
+  var randomAdjective = parseInt(Math.random() * ADJECTIVES_LENGTH);
+  var randomNoun = parseInt(Math.random() * NOUNS_LENGTH);
   var name = "The " + adjectives[randomAdjective].capitalize() + " " + nouns[randomNoun].capitalize();
   return name;
 }
 
 // Chooses random adjective and random noun
 function randomName() {
-  var randomNumberAdj = parseInt(Math.random() * adjectives.length);
-  var randomNumberNoun = parseInt(Math.random() * nouns.length);
+  var randomNumberAdj = parseInt(Math.random() * ADJECTIVES_LENGTH);
+  var randomNumberNoun = parseInt(Math.random() * NOUNS_LENGTH);
   return generator(adjectives[randomNumberAdj], nouns[randomNumberNoun]);
 }
 
