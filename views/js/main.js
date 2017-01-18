@@ -305,29 +305,44 @@ function randomName() {
   return generator(adjectives[randomNumberAdj], nouns[randomNumberNoun]);
 }
 
+// cache length in loop function calls
+var pizzaMeatsLength = pizzaIngredients.meats.length;
 // These functions return a string of a random ingredient from each respective category of ingredients.
 var selectRandomMeat = function() {
-  var randomMeat = pizzaIngredients.meats[Math.floor((Math.random() * pizzaIngredients.meats.length))];
+  var randomMeat = pizzaIngredients.meats[Math.floor((Math.random() * pizzaMeatsLength))];
+  // var randomMeat = pizzaIngredients.meats[Math.floor((Math.random() * pizzaIngredients.meats.length))];
   return randomMeat;
 };
 
+// cache length in loop function calls
+var pizzaNonmeatsLength = pizzaIngredients.nonMeats.length;
 var selectRandomNonMeat = function() {
-  var randomNonMeat = pizzaIngredients.nonMeats[Math.floor((Math.random() * pizzaIngredients.nonMeats.length))];
+  var randomNonMeat = pizzaIngredients.nonMeats[Math.floor((Math.random() * pizzaNonmeatsLength))];
+  // var randomNonMeat = pizzaIngredients.nonMeats[Math.floor((Math.random() * pizzaIngredients.nonMeats.length))];
   return randomNonMeat;
 };
 
+// cache length in loop function calls
+var pizzaCheesesLength = pizzaIngredients.cheeses.length;
 var selectRandomCheese = function() {
-  var randomCheese = pizzaIngredients.cheeses[Math.floor((Math.random() * pizzaIngredients.cheeses.length))];
+  var randomCheese = pizzaIngredients.cheeses[Math.floor((Math.random() * pizzaCheesesLength))];
+  // var randomCheese = pizzaIngredients.cheeses[Math.floor((Math.random() * pizzaIngredients.cheeses.length))];
   return randomCheese;
 };
 
+// cache length in loop function calls
+var pizzaSaucesLength = pizzaIngredients.sauces.length;
 var selectRandomSauce = function() {
-  var randomSauce = pizzaIngredients.sauces[Math.floor((Math.random() * pizzaIngredients.sauces.length))];
+  var randomSauce = pizzaIngredients.sauces[Math.floor((Math.random() * pizzaSaucesLength))];
+  // var randomSauce = pizzaIngredients.sauces[Math.floor((Math.random() * pizzaIngredients.sauces.length))];
   return randomSauce;
 };
 
+// cache length in loop function calls
+var pizzaCrustsLength = pizzaIngredients.crusts.length;
 var selectRandomCrust = function() {
-  var randomCrust = pizzaIngredients.crusts[Math.floor((Math.random() * pizzaIngredients.crusts.length))];
+  var randomCrust = pizzaIngredients.crusts[Math.floor((Math.random() * pizzaCrustsLength))];
+  // var randomCrust = pizzaIngredients.crusts[Math.floor((Math.random() * pizzaIngredients.crusts.length))];
   return randomCrust;
 };
 
@@ -500,14 +515,21 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 // Moves the sliding background pizzas based on scroll position
-function updatePositions() {
+function updatePositions(basicLefts) {
   frame++;
   window.performance.mark("mark_start_frame");
 
   var items = document.querySelectorAll('.mover');
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+  // cache length used in loop
+  var itemLength = items.length;
+  //cache DOM node property used in loop
+  var scrollTop = document.body.scrollTop;
+  for (var i = 0; i < itemLength; i++) {
+  // for (var i = 0; i < items.length; i++) {
+    var phase = Math.sin((scrollTop / 1250) + (i % 5));
+    // var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    // items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    items[i].style.left = basicLefts[i] + 100 * phase + 'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.

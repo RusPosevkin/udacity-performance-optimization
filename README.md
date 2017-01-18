@@ -11,6 +11,10 @@ To get started, check out the repository and inspect the code.
   * Minify js/css
   * Inline render blocking CSS: it is applied to the document immediately instead of blocking loading.
   * Disabled loading of Open Sans font (blocking rendering)
+* Getting Rid of Jank
+  * Cached array length property (when we used them in the loop)
+  * Cached DOM node properties (when we used them in the loop)
+  * Cache items[i].basicLeft (to reduce recalculate style time)
 
 
 ### Getting started
