@@ -305,7 +305,7 @@ function randomName() {
   return generator(adjectives[randomNumberAdj], nouns[randomNumberNoun]);
 }
 
-// cache length in loop function calls
+// optimization: cache length in loop function calls
 var pizzaMeatsLength = pizzaIngredients.meats.length;
 // These functions return a string of a random ingredient from each respective category of ingredients.
 var selectRandomMeat = function() {
@@ -314,7 +314,7 @@ var selectRandomMeat = function() {
   return randomMeat;
 };
 
-// cache length in loop function calls
+// optimization: cache length in loop function calls
 var pizzaNonmeatsLength = pizzaIngredients.nonMeats.length;
 var selectRandomNonMeat = function() {
   var randomNonMeat = pizzaIngredients.nonMeats[Math.floor((Math.random() * pizzaNonmeatsLength))];
@@ -322,7 +322,7 @@ var selectRandomNonMeat = function() {
   return randomNonMeat;
 };
 
-// cache length in loop function calls
+// optimization: cache length in loop function calls
 var pizzaCheesesLength = pizzaIngredients.cheeses.length;
 var selectRandomCheese = function() {
   var randomCheese = pizzaIngredients.cheeses[Math.floor((Math.random() * pizzaCheesesLength))];
@@ -330,7 +330,7 @@ var selectRandomCheese = function() {
   return randomCheese;
 };
 
-// cache length in loop function calls
+// optimization: cache length in loop function calls
 var pizzaSaucesLength = pizzaIngredients.sauces.length;
 var selectRandomSauce = function() {
   var randomSauce = pizzaIngredients.sauces[Math.floor((Math.random() * pizzaSaucesLength))];
@@ -338,7 +338,7 @@ var selectRandomSauce = function() {
   return randomSauce;
 };
 
-// cache length in loop function calls
+// optimization: cache length in loop function calls
 var pizzaCrustsLength = pizzaIngredients.crusts.length;
 var selectRandomCrust = function() {
   var randomCrust = pizzaIngredients.crusts[Math.floor((Math.random() * pizzaCrustsLength))];
@@ -515,21 +515,36 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 // Moves the sliding background pizzas based on scroll position
-function updatePositions(basicLefts) {
+function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.querySelectorAll('.mover');
-  // cache length used in loop
+  // var items = document.querySelectorAll('.mover');
+
+  // optimization: cache all moving pizza items
+  if (!window.pizzaItems) {
+    window.pizzaItems = document.querySelectorAll('.mover');
+    console.log(window.pizzaItems.length);
+  }
+  var items = window.pizzaItems;
+
+  // optimization: cache length used in loop
   var itemLength = items.length;
-  //cache DOM node property used in loop
-  var scrollTop = document.body.scrollTop;
+
+  // optimization: cache DOM node property used in loop
+  var scrollY = document.body.scrollTop / 1250;
+
+  // optimization: at first, all relayout operations
+  var basicLefts = [];
+
   for (var i = 0; i < itemLength; i++) {
-  // for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((scrollTop / 1250) + (i % 5));
-    // var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-    // items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
-    items[i].style.left = basicLefts[i] + 100 * phase + 'px';
+    var phase = Math.sin(scrollY + (i % 5));
+    basicLefts.push(items[i].basicLeft + 100 * phase + 'px');
+  }
+
+  // after that - all repaint operations
+  for (var i = 0; i < itemLength; i++) {
+    items[i].style.left = basicLefts[i];
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -549,7 +564,10 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  // optimization: use createDocumentFragment
+  // to reduce count of DOM manipulations
+  var docFragment = document.createDocumentFragment();
+  for (var i = 0; i < 40; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
@@ -557,7 +575,8 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    docFragment.appendChild(elem);
   }
+  document.querySelector("#movingPizzas1").appendChild(docFragment);
   updatePositions();
 });

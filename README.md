@@ -11,10 +11,14 @@ To get started, check out the repository and inspect the code.
   * Minify js/css
   * Inline render blocking CSS: it is applied to the document immediately instead of blocking loading.
   * Disabled loading of Open Sans font (blocking rendering)
-* Getting Rid of Jank
+* Getting Rid of Jank (all optimizations you can find into the code with prepending "optimization:" comment)
   * Cached array length property (when we used them in the loop)
   * Cached DOM node properties (when we used them in the loop)
-  * Cache items[i].basicLeft (to reduce recalculate style time)
+  * updatePositions: divide relayout and repaint operations in the loop (to reduce recalculate style time)
+  * Use createDocumentFragment to reduce count of DOM manipulations
+  * Reduce count of generating moving pizzas to 40 (it's still enough to cover the screen)
+  * Add new paint layer for every moving pizza ("will-transform")
+  * Cache all moving pizza items DOM node once after initialization
 
 
 ### Getting started
