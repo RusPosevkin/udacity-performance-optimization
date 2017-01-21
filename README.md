@@ -14,7 +14,7 @@ To get started, check out the repository and inspect the code.
 * Getting Rid of Jank (all optimizations you can find into the code with prepending "optimization:" comment)
   * Cached array length property (when we used them in the loop)
   * Cached DOM node properties (when we used them in the loop)
-  * updatePositions: divide relayout and repaint operations in the loop (to reduce recalculate style time)
+  * Divide relayout and repaint operations in the loop (to reduce recalculate style time)
   * Use createDocumentFragment to reduce count of DOM manipulations
   * Reduce count of generating moving pizzas to 40 (it's still enough to cover the screen)
   * Add new paint layer for every moving pizza ("will-transform")
