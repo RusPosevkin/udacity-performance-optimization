@@ -24,7 +24,7 @@ Your challenge, if you wish to accept it (and we sure hope you will), is to opti
 ## What's done
 * PageSpeed Score
   * Add media type for print.css request (download only for printing)
-  * views/images/pizzeria.jpg size optimized
+  * Optimize images
   * Minify js/css
   * Inline render blocking CSS: it is applied to the document immediately instead of blocking loading.
   * Disabled loading of Open Sans font (blocking rendering)
