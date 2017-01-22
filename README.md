@@ -38,3 +38,4 @@ Your challenge, if you wish to accept it (and we sure hope you will), is to opti
   * Cache all moving pizza items DOM node once after initialization
   * Move DOM node style constant properties to CSS
   * Grid classes instead of inline CSS rules
+  * Calculate constant values once out of the loop

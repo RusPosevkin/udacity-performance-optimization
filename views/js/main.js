@@ -480,21 +480,12 @@ var resizePizzas = function(size) {
     var randomPizzaContainer = document.querySelectorAll(".randomPizzaContainer");
     var randomPizzaContainerLength = randomPizzaContainer.length;
 
-    var newWidthData = [];
+    // optimization: calculate new value of width once out of the loop
+    var dx = determineDx(randomPizzaContainer[0], size, windowWidth);
+    var newWidth = (randomPizzaContainer[0].offsetWidth + dx) + 'px';
 
     for (var i = 0; i < randomPizzaContainerLength; i++) {
-      // optimization: cache randomPizzaContainer item
-      var randomPizzaContainerItem = randomPizzaContainer[i];
-
-      var dx = determineDx(randomPizzaContainerItem, size, windowWidth);
-      newWidthData.push((randomPizzaContainerItem.offsetWidth + dx) + 'px');
-      // var newwidth = (randomPizzaContainerItem.offsetWidth + dx) + 'px';
-      // randomPizzaContainerItem.style.width = newwidth;
-    }
-
-    // optimization: divide relayout and repaint operations
-    for (var i = 0; i < randomPizzaContainerLength; i++) {
-      randomPizzaContainer[i].style.width = newWidthData[i];
+      randomPizzaContainer[i].style.width = newWidth;
     }
   }
 
