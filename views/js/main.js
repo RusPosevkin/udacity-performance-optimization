@@ -586,10 +586,16 @@ window.addEventListener('scroll', onScroll);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
+  // optimization: dynamically calculations of
+  // pizzas count needed to cover the screen
+  var height = window.screen.height;
+  var rows = height / s;
+  var pizzasCount = rows * cols;
+
   // optimization: use createDocumentFragment
   // to reduce count of DOM manipulations
   var docFragment = document.createDocumentFragment();
-  for (var i = 0; i < 20; i++) {
+  for (var i = 0; i < pizzasCount; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     // optimization: make image with correct width and height
