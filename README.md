@@ -28,6 +28,7 @@ Your challenge, if you wish to accept it (and we sure hope you will), is to opti
   * Minify js/css
   * Inline render blocking CSS: it is applied to the document immediately instead of blocking loading.
   * Disabled loading of Open Sans font (blocking rendering)
+  * Using webfontloader for Google fonts implementation
 * Getting Rid of Jank (all optimizations you can find into the code with prepending "optimization:" comment)
   * Cached array length property (when we used them in the loop)
   * Cached DOM node properties (when we used them in the loop)

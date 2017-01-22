@@ -7,24 +7,22 @@
     <meta name="author" content=" FILL ME IN ">
     <title>Cameron Pittman: Portfolio</title>
 
-    <!-- Hmm, what is the impact of web fonts on speed? Measure it... -->
-    <!-- <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"> -->
-
-    <!-- <link href="css/style.min.css" rel="stylesheet"> -->
     <link href="css/print.min.css" rel="stylesheet" media="print">
 
     <script>
-      (function(w,g){w['GoogleAnalyticsObject']=g;
-      w[g]=w[g]||function(){(w[g].q=w[g].q||[]).push(arguments)};w[g].l=1*new Date();})(window,'ga');
+      var cb=function(){var e=document.createElement("link");e.rel="stylesheet";e.href="css/style.min.css?ver=1";var t=document.getElementsByTagName("head")[0];t.parentNode.insertBefore(e,t)};var raf=requestAnimationFrame||mozRequestAnimationFrame||webkitRequestAnimationFrame||msRequestAnimationFrame;if(raf)raf(cb);else window.addEventListener("load",cb)
+    </script>
 
-      // Optional TODO: replace with your Google Analytics profile ID.
-      ga('create', 'UA-XXXX-Y');
-      ga('send', 'pageview');
+    <!-- Google fonts downloading -->
+    <script>
+      WebFontConfig={google:{families:["Open+Sans:400,700"]}},function(a){var b=a.createElement("script"),c=a.scripts[0];b.src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js",b.async=!0,c.parentNode.insertBefore(b,c)}(document);
+    </script>
+
+    <script>
+      !function(a,b){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date}(window,"ga"),ga("create","UA-XXXX-Y"),ga("send","pageview");
     </script>
     <script async src="js/perfmatters.js"></script>
-    <script>
-      var cb=function(){var e=document.createElement("link");e.rel="stylesheet";e.href="css/style.min.css";var t=document.getElementsByTagName("head")[0];t.parentNode.insertBefore(e,t)};var raf=requestAnimationFrame||mozRequestAnimationFrame||webkitRequestAnimationFrame||msRequestAnimationFrame;if(raf)raf(cb);else window.addEventListener("load",cb)
-    </script>
+    <script async src="http://www.google-analytics.com/analytics.js"></script>
   </head>
 
   <body>
@@ -71,6 +69,5 @@
         <p>&copy; Web Performance 2014 <span id="crp-stats"></span></p>
       </footer>
     </div>
-    <script src="http://www.google-analytics.com/analytics.js"></script>
   </body>
 </html>
