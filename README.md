@@ -41,14 +41,14 @@ Your challenge, if you wish to accept it (and we sure hope you will), is to opti
   * Grid classes instead of inline CSS rules
   * Calculate constant values once out of the loop
 
-#### Result
+## Result
 
-##### PageSpeed Score
+### PageSpeed Score
 ![PageSpeed Mobile](/readme-images/pagespeed-mobile.png?raw=true)
 ![PageSpeed Desktop](/readme-images/pagespeed-desktop.png?raw=true)
 
-##### Getting Rid of Jank
+### Getting Rid of Jank
 ![Timeline](/readme-images/timeline.png?raw=true)
 
-##### Pizza Resize
+### Pizza Resize
 ![Pizza Resize](/readme-images/resize-pizza.png?raw=true)
