@@ -52,3 +52,6 @@ Your challenge, if you wish to accept it (and we sure hope you will), is to opti
 
 ### Pizza Resize
 ![Pizza Resize](/readme-images/resize-pizza.png?raw=true)
+
+## License
+[MIT](LICENSE)
