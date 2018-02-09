@@ -1,6 +1,6 @@
 ## Website Performance Optimization portfolio project
 
-The main purpose of this project is to optimize this boilerplate online portfolio for speed. In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques that have been picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
+The main purpose of this project is to optimize the boilerplate online portfolio for speed. In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques that have been picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
 
 ## How to start
 1. Clone this repository https://github.com/RusPosevkin/udacity-performance-optimization.git
